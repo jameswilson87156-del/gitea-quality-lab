@@ -79,3 +79,22 @@ def test_malformed_json_is_rejected_as_a_client_error(admin_client, private_repo
     )
 
     assert response.status_code in {400, 422}
+
+
+@pytest.mark.case(id="REPO-002", category="authorization")
+def test_regular_user_can_create_own_repository_and_issue(owner_client, owner_auth, run_id):
+    repo_name = f"qa-owner-{run_id[-8:].lower()}"
+    created_repo = owner_client.post(
+        "/user/repos",
+        json={"name": repo_name, "private": True, "auto_init": True},
+    )
+    assert created_repo.status_code == 201
+    full_name = created_repo.json()["full_name"]
+
+    created_issue = owner_client.post(
+        f"/repos/{full_name}/issues",
+        json={"title": "Regular user owns this Issue", "body": "Owner-level creation is allowed."},
+    )
+
+    assert created_issue.status_code == 201
+    assert created_issue.json()["user"]["login"] == owner_auth[0]

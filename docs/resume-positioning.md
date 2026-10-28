@@ -6,9 +6,9 @@ Suggested project entry:
 
 > **Gitea Quality Lab — API/UI automation testing**
 >
-> Built a local, repeatable test harness for Gitea 28.2.0 with Docker Compose, SQLite, Python, pytest, HTTPX, and Playwright. Automated API authentication/authorization, private-repository access, Issue/comment/label lifecycle, Chromium login, and post-restart persistence; emitted JSON/JUnit/HTML reports and browser screenshots. The recorded local run executed 12 cases: 12 passed, 0 failed, 0 skipped.
+> Built a local, repeatable test harness for Gitea 28.2.0 with Docker Compose, SQLite, Python, pytest, HTTPX, and Playwright. Automated API authentication/authorization, public/private repository access, Issue/comment/label lifecycle, a Chromium repository-to-Issue workflow, and post-restart persistence; emitted JSON/JUnit/HTML reports and browser screenshots. The recorded local run executed 16 cases: 16 passed, 0 failed, 0 skipped.
 
-Evidence is available under `reports/runs/20261028T123203Z-10297b8d/`. Describe it as local open-source product testing. Do not call it company project experience, production monitoring, production load, or a Gitea defect discovery project.
+Evidence is available under `reports/runs/20261028T125224Z-80e1fd0e/`. Describe it as local open-source product testing. Do not call it company project experience, production monitoring, production load, or a Gitea defect discovery project.
 
 ## PromptOps Studio
 

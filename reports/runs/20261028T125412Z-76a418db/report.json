@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "run_id": "20261028T125412Z-76a418db",
+  "execution_state": "completed",
+  "started_at": "2026-10-28T12:54:12Z",
+  "finished_at": "2026-10-28T12:54:14Z",
+  "target": {
+    "name": "Gitea",
+    "version": "28.2.0",
+    "base_url": "http://127.0.0.1:13000",
+    "mode": "local-docker-compose"
+  },
+  "summary": {
+    "tests": 2,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 1,
+    "errors": 0
+  },
+  "cases": [
+    {
+      "id": "TRACE-PROBE-001",
+      "category": "trace-sanitization",
+      "node_id": "tests/test_security_probe_temp.py::test_authenticated_failure_trace",
+      "outcome": "failed",
+      "duration_seconds": 1.1972,
+      "failure": "[call] tests\\test_security_probe_temp.py:13: in test_authenticated_failure_trace\n    pytest.fail(\"intentional diagnostic failure containing local credential: \" + admin_auth[1])\nE   Failed: intentional diagnostic failure containing local credential: [REDACTED]"
+    },
+    {
+      "id": "SKIP-PROBE-001",
+      "category": "report-compatibility",
+      "node_id": "tests/test_security_probe_temp.py::test_setup_skip_report_shape",
+      "outcome": "skipped",
+      "duration_seconds": 0.0002,
+      "failure": "('<local-workspace>/test_security_probe_temp.py', 15, 'Skipped: intentional setup-skip compatibility probe')"
+    }
+  ]
+}

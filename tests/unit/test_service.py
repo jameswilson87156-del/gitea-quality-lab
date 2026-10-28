@@ -5,6 +5,34 @@ import threading
 from qa_lab import service
 
 
+def test_local_target_resolver_accepts_only_fixed_loopback(monkeypatch):
+    assert service.resolve_base_url(None) == service.BASE_URL
+    assert service.resolve_base_url("http://127.0.0.1:13000/") == service.BASE_URL
+
+    for requested in (
+        "https://example.com",
+        "http://127.0.0.1:13001",
+        "http://localhost:13000",
+        "http://127.0.0.1:13000/path",
+    ):
+        try:
+            service.resolve_base_url(requested)
+        except ValueError as error:
+            assert "fixed local target" in str(error)
+        else:
+            raise AssertionError(f"unexpected target accepted: {requested}")
+
+
+def test_local_target_resolver_rejects_environment_override(monkeypatch):
+    monkeypatch.setenv("GITEA_BASE_URL", "https://example.com")
+    try:
+        service.resolve_base_url_from_environment()
+    except ValueError as error:
+        assert "fixed local target" in str(error)
+    else:
+        raise AssertionError("external GITEA_BASE_URL override was accepted")
+
+
 def test_wait_for_gitea_retries_a_real_connection_drop(monkeypatch):
     class FlakyHandler(BaseHTTPRequestHandler):
         attempts = 0

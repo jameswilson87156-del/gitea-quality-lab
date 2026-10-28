@@ -2,29 +2,57 @@
 
 ## Accepted end-to-end run
 
-- Run ID: `20261028T123203Z-10297b8d`
+- Run ID: `20261028T125224Z-80e1fd0e`
 - Date: 2026-10-28 UTC
 - Target: Gitea `28.2.0`, `local-docker-compose`, `http://127.0.0.1:13000`
 - Command: `.\.venv\Scripts\python.exe scripts/run.py`
 - Exit code: `0`
-- Result: 12 collected, 12 passed, 0 failed, 0 skipped, 0 errors
-- The persistence case restarted only `gitea-quality-lab-gitea-1`, then read the same repository and Issue from the named SQLite volume.
+- Result: 16 collected, 16 passed, 0 failed, 0 skipped, 0 errors
+- The suite includes anonymous public/private repository access, denial at a private-repository boundary, regular-user repository/Issue creation, browser creation/comment/close flow, and persistence after restarting the dedicated Gitea container.
 
 Evidence files:
 
-- [`report.json`](runs/20261028T123203Z-10297b8d/report.json)
-- [`junit.xml`](runs/20261028T123203Z-10297b8d/junit.xml)
-- [`report.html`](runs/20261028T123203Z-10297b8d/report.html)
-- [Chromium screenshot](runs/20261028T123203Z-10297b8d/artifacts/20261028T123203Z-10297b8d-test_admin_signs_in_and_opens_an_issue_from_the_issue_list.png)
+- [`report.json`](runs/20261028T125224Z-80e1fd0e/report.json)
+- [`junit.xml`](runs/20261028T125224Z-80e1fd0e/junit.xml)
+- [`report.html`](runs/20261028T125224Z-80e1fd0e/report.html)
+- [Chromium screenshot of the browser workflow](runs/20261028T125224Z-80e1fd0e/artifacts/20261028T125224Z-80e1fd0e-UI-001.png)
 
-JSON and JUnit totals were compared after the run: both reported 12 tests, 12 passes, no failures, skips, or errors. The JSON and report artifacts were scanned against the local credential file; no credential strings were found. The passing run produced no failure trace, as expected.
+JSON and JUnit both report 16 tests, 16 passes, no failures, skips, or errors. The JSON case IDs are unique. The accepted run's report files were scanned against local password/token values; no matches were found. Since the run passed, it correctly contains no failure trace.
 
 ## Harness unit tests
 
 - Command: `.\.venv\Scripts\python.exe -m pytest tests/unit -q`
 - Exit code: `0`
-- Result: 12 passed
+- Result: 19 passed
+- Coverage includes teardown accounting, setup-skip reporting, pre-reporter secret redaction, loopback target restriction, and cookie/header/NDJSON Trace sanitization.
 
-## CI status
+## Failure-trace and report-secret diagnostic
 
-The workflow is configured in `.github/workflows/quality.yml`, but no remote Actions run is claimed. The project has not been pushed.
+Run `20261028T125412Z-76a418db` is a separate, intentional diagnostic, not part of the accepted end-to-end suite. It used a temporary browser test that logged in, enabled Trace, then raised an intentional failure containing the local admin password. A second temporary test skipped during setup to exercise pytest/JUnit compatibility. The temporary source was removed after the run.
+
+- Pytest exit code: `1`, expected because `TRACE-PROBE-001` deliberately failed.
+- Result: 2 tests, 0 passed, 1 failed, 1 skipped, 0 errors.
+- JSON and JUnit totals agree.
+- The password was absent from captured terminal output, JSON, JUnit, and HTML.
+- A post-login Playwright Trace ZIP was generated; cookie, authorization, and credential fields were redacted and no raw trace remained.
+- Before public release, the machine-specific absolute path in the diagnostic JUnit skip detail was replaced with its project-relative path; the case result and totals are unchanged.
+- Command shape: `python -m pytest tests/test_security_probe_temp.py -ra --tb=short --junitxml=<run-dir>/junit.xml --html=<run-dir>/report.html --self-contained-html`; the test module was generated temporarily and removed afterward.
+
+Evidence files:
+
+- [`report.json`](runs/20261028T125412Z-76a418db/report.json)
+- [`junit.xml`](runs/20261028T125412Z-76a418db/junit.xml)
+- [`report.html`](runs/20261028T125412Z-76a418db/report.html)
+- [Sanitized failure Trace](runs/20261028T125412Z-76a418db/artifacts/20261028T125412Z-76a418db-TRACE-PROBE-001-trace.zip)
+
+This probe is intentionally reported as a failing diagnostic. Do not include it in the accepted-suite pass count.
+
+## Environment checks
+
+- `\.venv\Scripts\python.exe -m compileall -q qa_lab tests scripts` — exit `0`.
+- `\.venv\Scripts\python.exe -m pip check` — exit `0`, no broken requirements.
+- `docker compose --project-name gitea-quality-lab --file compose.yml ps` — Gitea `28.2.0` healthy on `127.0.0.1:13000`.
+
+## CI status and boundaries
+
+The workflow is configured in `.github/workflows/quality.yml`, but no remote Actions run is claimed. The project has not been pushed. All accepted results are from a local open-source Gitea instance; they do not represent production-system testing, production monitoring, or production load.

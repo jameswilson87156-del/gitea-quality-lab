@@ -1,10 +1,23 @@
 import json
+import os
 import time
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
 
 BASE_URL = "http://127.0.0.1:13000"
+
+
+def resolve_base_url(requested: str | None) -> str:
+    """Accept only this project's fixed loopback service endpoint."""
+    normalized = (requested or BASE_URL).rstrip("/")
+    if normalized != BASE_URL:
+        raise ValueError(f"Gitea target must be the fixed local target {BASE_URL}.")
+    return BASE_URL
+
+
+def resolve_base_url_from_environment() -> str:
+    return resolve_base_url(os.environ.get("GITEA_BASE_URL"))
 
 
 def wait_for_gitea(base_url: str = BASE_URL, timeout_seconds: int = 120) -> str:

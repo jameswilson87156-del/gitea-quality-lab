@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "run_id": "20261028T122226Z-14eb33bc",
+  "execution_state": "completed",
+  "started_at": "2026-10-28T12:22:27Z",
+  "finished_at": "2026-10-28T12:22:46Z",
+  "target": {
+    "name": "Gitea",
+    "version": "28.2.0",
+    "base_url": "http://127.0.0.1:13000",
+    "mode": "local-docker-compose"
+  },
+  "summary": {
+    "tests": 11,
+    "passed": 10,
+    "failed": 1,
+    "skipped": 0,
+    "errors": 0
+  },
+  "cases": [
+    {
+      "id": "AUTH-001",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release",
+      "outcome": "passed",
+      "duration_seconds": 0.2097,
+      "failure": null
+    },
+    {
+      "id": "AUTH-002",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity",
+      "outcome": "passed",
+      "duration_seconds": 0.0301,
+      "failure": null
+    },
+    {
+      "id": "AUTH-003",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_invalid_token_is_rejected",
+      "outcome": "passed",
+      "duration_seconds": 0.1346,
+      "failure": null
+    },
+    {
+      "id": "PERM-001",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api",
+      "outcome": "passed",
+      "duration_seconds": 0.029,
+      "failure": null
+    },
+    {
+      "id": "PERM-002",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts",
+      "outcome": "passed",
+      "duration_seconds": 0.0293,
+      "failure": null
+    },
+    {
+      "id": "UI-001",
+      "category": "browser-workflow",
+      "node_id": "tests/test_browser.py::test_admin_signs_in_and_opens_an_issue_from_the_issue_list",
+      "outcome": "failed",
+      "duration_seconds": 10.9066,
+      "failure": "tests\\test_browser.py:29: in test_admin_signs_in_and_opens_an_issue_from_the_issue_list\n    expect(page.get_by_role(\"heading\", name=title, exact=True)).to_be_visible(timeout=10_000)\nE   AssertionError: Locator expected to be visible\nE   Actual value: None\nE   Error: element(s) not found \nE   Call log:\nE     - Expect \"to_be_visible\" get_by_role(\"heading\", name=\"Browser workflow issue from automated run\", exact=True) with timeout 10000ms\nE     - waiting for get_by_role(\"heading\", name=\"Browser workflow issue from automated run\", exact=True)\nE   \nE   Aria snapshot:\nE   - navigation \"Navigation Bar\":\nE     - link \"Dashboard\":\nE       - /url: /\nE     - link \"Issues\":\nE       - /url: /issues\nE     - link \"Pull Requests\":\nE       - /url: /pulls\nE     - link \"Milestones\":\nE       - /url: /milestones\nE     - link \"Explore\":\nE       - /url: /explore/repos\nE     - link \"Notifications\":\nE       - /url: /notifications\nE     - menu \"Create…\"\nE     - menu \"Profile and Settings…\":\nE       - img \"qa_admin\"\nE   - main \"#1 - Browser workflow issue from automated run\":\nE     - link \"qa_admin\":\nE       - /url: /qa_admin\nE     - text: /\nE     - link \"qa-14eb33bc-01-test-admin-signs-in-and-open\":\nE       - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open\nE     - text: Private\nE     - link \"RSS Feed\":\nE       - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open.rss\nE     - button \"Watching\": \"1\"\nE     - button \"Star\": \"0\"\nE     - button \"You cannot fork a repository you own.\": Fork 0\nE     - navigation:\nE       - link \"Code\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/src/\nE       - link \"Issues 1\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/issues\nE       - link \"Pull Requests\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/pulls\nE       - link \"Actions\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/actions\nE       - link \"Packages\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/packages\nE       - link \"Projects\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/projects\nE       - link \"Releases\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/releases\nE       - link \"Wiki\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/wiki\nE       - link \"Activity\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/activity\nE       - link \"Settings\":\nE         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/settings\nE     - 'heading \"Browser workflow issue from automated run #1\" [level=1]'\nE     - button \"Edit\"\nE     - button \"New Issue\"\nE     - text: Open opened 2026-10-28 12:22:30 +00:00now by\nE     - link \"qa_admin\":\nE       - /url: /qa_admin\nE     - text: · 0 comments\nE     - link \"qa_admin\":\nE       - /url: /qa_admin\nE       - img \"qa_admin\"\nE     - heading \"qa_admin commented Oct 28, 2026, 20:22 This user is the owner of this repository.\" [level=3]:\nE       - link \"qa_admin\":\nE         - /url: /qa_admin\nE       - text: commented\nE       - link \"Oct 28, 2026, 20:22\":\nE         - /url: \"#issue-4\"\nE         - text: 2026-10-28 12:22:30 +00:00now\nE       - text: Owner\nE       - menu \"Reactions\"\nE       - menu\nE     - article:\nE       - paragraph: This issue is opened through the browser workflow test.\nE     - link \"qa_admin\":\nE       - /url: /qa_admin\nE       - img \"qa_admin\"\nE     - text: Write Preview\nE     - toolbar:\nE       - button \"Add heading\": \"1\"\nE       - button \"Add heading\": \"2\"\nE       - button \"Add heading\": \"3\"\nE       - button \"Add bold text\"\nE       - button \"Add italic text\"\nE       - button \"Add strikethrough text\"\nE       - button \"Quote text\"\nE       - button \"Add code\"\nE       - button \"Add a link\"\nE       - button \"Add a bullet list\"\nE       - button \"Add a numbered list\"\nE       - button \"Add a list of tasks\"\nE       - button \"Add a table\"\nE       - button \"Mention a user or team\"\nE       - button \"Reference an issue or pull request\"\nE       - button\nE       - button \"Use the legacy editor instead\"\nE     - textbox \"Leave a comment\"\nE     - button \"Drop files here to upload\"\nE     - button \"Close Issue\"\nE     - button \"Comment\" [disabled]\nE     - combobox: No Branch/Tag Specified\nE     - menu:\nE       - strong: Labels\nE     - text: No labels\nE     - menu:\nE       - strong: Milestone\nE     - text: No Milestone\nE     - menu:\nE       - strong: Projects\nE     - text: No projects\nE     - combobox:\nE       - strong: Assignees\nE     - text: No Assignees\nE     - strong: 1 Participants\nE     - link \"qa_admin\":\nE       - /url: /qa_admin\nE       - img \"qa_admin\"\nE     - strong: Notifications\nE     - button \"Unsubscribe\"\nE     - strong: Time Tracker\nE     - button \"Set estimated time\"\nE     - button \"Start timer\"\nE     - button \"Add Time\"\nE     - strong: Due Date\nE     - text: No due date set.\nE     - textbox:\nE       - /placeholder: yyyy-mm-dd\nE     - button\nE     - strong: Dependencies\nE     - paragraph: No dependencies set.\nE     - combobox\nE     - text: Add dependency…\nE     - button\nE     - text: \"Reference: qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open#1\"\nE     - button\nE     - button \"Pin\"\nE     - button \"Lock conversation\"\nE     - button \"Delete\"\nE   - group \"Footer\":\nE     - contentinfo \"About Software\":\nE       - link \"Powered by Gitea\":\nE         - /url: https://about.gitea.com\nE       - text: \"Version:\"\nE       - link \"28.2.0\":\nE         - /url: /-/admin/config\nE       - text: \"Page:\"\nE       - strong: 67ms\nE       - text: \"Template:\"\nE       - strong: 14ms\nE     - group \"Links\":\nE       - menu: Auto\nE       - menu: English\nE       - link \"Licenses\":\nE         - /url: /assets/licenses.txt\nE       - link \"API\":\nE         - /url: /api/swagger"
+    },
+    {
+      "id": "REPO-001",
+      "category": "repository",
+      "node_id": "tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata",
+      "outcome": "passed",
+      "duration_seconds": 0.0134,
+      "failure": null
+    },
+    {
+      "id": "PERM-003",
+      "category": "authorization",
+      "node_id": "tests/test_repository_issues.py::test_guest_cannot_read_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.0148,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-001",
+      "category": "issue-lifecycle",
+      "node_id": "tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle",
+      "outcome": "passed",
+      "duration_seconds": 0.706,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-002",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error",
+      "outcome": "passed",
+      "duration_seconds": 0.0138,
+      "failure": null
+    },
+    {
+      "id": "INPUT-001",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error",
+      "outcome": "passed",
+      "duration_seconds": 0.014,
+      "failure": null
+    }
+  ]
+}

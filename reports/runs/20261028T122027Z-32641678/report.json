@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "run_id": "20261028T122027Z-32641678",
+  "execution_state": "completed",
+  "started_at": "2026-10-28T12:20:28Z",
+  "finished_at": "2026-10-28T12:20:32Z",
+  "target": {
+    "name": "Gitea",
+    "version": "28.2.0",
+    "base_url": "http://127.0.0.1:13000",
+    "mode": "local-docker-compose"
+  },
+  "summary": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "cases": [
+    {
+      "id": "AUTH-001",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release",
+      "outcome": "passed",
+      "duration_seconds": 0.2145,
+      "failure": null
+    },
+    {
+      "id": "AUTH-002",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity",
+      "outcome": "passed",
+      "duration_seconds": 0.0426,
+      "failure": null
+    },
+    {
+      "id": "AUTH-003",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_invalid_token_is_rejected",
+      "outcome": "passed",
+      "duration_seconds": 0.1401,
+      "failure": null
+    },
+    {
+      "id": "PERM-001",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api",
+      "outcome": "passed",
+      "duration_seconds": 0.0445,
+      "failure": null
+    },
+    {
+      "id": "PERM-002",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts",
+      "outcome": "passed",
+      "duration_seconds": 0.0719,
+      "failure": null
+    },
+    {
+      "id": "REPO-001",
+      "category": "repository",
+      "node_id": "tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata",
+      "outcome": "passed",
+      "duration_seconds": 0.0138,
+      "failure": null
+    },
+    {
+      "id": "PERM-003",
+      "category": "authorization",
+      "node_id": "tests/test_repository_issues.py::test_guest_cannot_read_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.0396,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-001",
+      "category": "issue-lifecycle",
+      "node_id": "tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle",
+      "outcome": "passed",
+      "duration_seconds": 0.5744,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-002",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error",
+      "outcome": "passed",
+      "duration_seconds": 0.0133,
+      "failure": null
+    }
+  ]
+}

@@ -83,9 +83,12 @@
 
 **Files:**
 - Create: `tests/test_browser.py`
-- Modify: `tests/test_repository_issues.py`
+- Create: `tests/test_z_persistence.py`
+- Create: `qa_lab/tracing.py`
+- Modify: `qa_lab/service.py`
 - Modify: `tests/conftest.py`
-- Modify: `scripts/run.py`
+- Test: `tests/unit/test_service.py`
+- Test: `tests/unit/test_tracing.py`
 
 **Interfaces:**
 - `browser_page` is a Chromium page with tracing enabled and a run-scoped artifact directory.
@@ -111,6 +114,7 @@
 
 - [ ] Document Windows and Linux setup, local-only boundaries, test matrix, report interpretation, start/stop commands, and evidence limitations.
 - [ ] Add GitHub Actions steps for Python 3.12, Playwright Chromium, the same Compose/pytest runner, and always-uploaded reports.
+- [ ] Add a truthful PromptOps upgrade route and resume positioning that distinguish local simulation from production experience.
 - [ ] Run `py -3.12 -m pytest tests/unit -q` and `py -3.12 scripts/run.py`; expected: pass with actual JSON/JUnit/HTML and screenshot artifacts.
 - [ ] Inspect the JSON report against JUnit and a live API query; expected: IDs, counts, run ID, service version, and outcomes agree.
 - [ ] Inspect repository status and confirm no `.state` secrets, PromptOps files, or unrelated containers were changed.

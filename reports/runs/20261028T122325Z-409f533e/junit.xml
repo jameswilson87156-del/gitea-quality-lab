@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="12" time="11.725" timestamp="2026-10-28T20:23:26.178508+08:00" hostname="DESKTOP-2KSSCF5"><testcase classname="tests.test_api_auth" name="test_public_version_endpoint_reports_pinned_gitea_release" time="0.223" /><testcase classname="tests.test_api_auth" name="test_authenticated_user_endpoint_returns_admin_identity" time="0.161" /><testcase classname="tests.test_api_auth" name="test_invalid_token_is_rejected" time="0.157" /><testcase classname="tests.test_api_auth" name="test_regular_user_cannot_access_admin_user_api" time="0.165" /><testcase classname="tests.test_api_auth" name="test_admin_can_list_users_and_test_accounts" time="0.149" /><testcase classname="tests.test_browser" name="test_admin_signs_in_and_opens_an_issue_from_the_issue_list" time="2.108" /><testcase classname="tests.test_repository_issues" name="test_admin_creates_private_repository_and_reads_its_metadata" time="0.893" /><testcase classname="tests.test_repository_issues" name="test_guest_cannot_read_private_repository" time="0.922" /><testcase classname="tests.test_repository_issues" name="test_issue_comment_label_close_and_reopen_lifecycle" time="1.447" /><testcase classname="tests.test_repository_issues" name="test_issue_without_required_title_returns_validation_error" time="0.757" /><testcase classname="tests.test_repository_issues" name="test_malformed_json_is_rejected_as_a_client_error" time="0.766" /><testcase classname="tests.test_z_persistence" name="test_repository_and_issue_survive_gitea_container_restart" time="3.633"><failure message="http.client.RemoteDisconnected: Remote end closed connection without response">tests\test_z_persistence.py:31: in test_repository_and_issue_survive_gitea_container_restart
+    wait_for_gitea(base_url=base_url, timeout_seconds=150)
+qa_lab\service.py:16: in wait_for_gitea
+    with urlopen(f"{base_url.rstrip('/')}/api/v1/version", timeout=3) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:215: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:515: in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:532: in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:492: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:1373: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\urllib\request.py:1348: in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\http\client.py:1430: in getresponse
+    response.begin()
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\http\client.py:331: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+<local-user>/AppData\Local\Programs\Python\Python312\Lib\http\client.py:300: in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+E   http.client.RemoteDisconnected: Remote end closed connection without response</failure></testcase></testsuite></testsuites>

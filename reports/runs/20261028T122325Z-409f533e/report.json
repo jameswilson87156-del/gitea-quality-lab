@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "run_id": "20261028T122325Z-409f533e",
+  "execution_state": "completed",
+  "started_at": "2026-10-28T12:23:26Z",
+  "finished_at": "2026-10-28T12:23:37Z",
+  "target": {
+    "name": "Gitea",
+    "version": "28.2.0",
+    "base_url": "http://127.0.0.1:13000",
+    "mode": "local-docker-compose"
+  },
+  "summary": {
+    "tests": 12,
+    "passed": 11,
+    "failed": 1,
+    "skipped": 0,
+    "errors": 0
+  },
+  "cases": [
+    {
+      "id": "AUTH-001",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release",
+      "outcome": "passed",
+      "duration_seconds": 0.2225,
+      "failure": null
+    },
+    {
+      "id": "AUTH-002",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity",
+      "outcome": "passed",
+      "duration_seconds": 0.0285,
+      "failure": null
+    },
+    {
+      "id": "AUTH-003",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_invalid_token_is_rejected",
+      "outcome": "passed",
+      "duration_seconds": 0.1567,
+      "failure": null
+    },
+    {
+      "id": "PERM-001",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api",
+      "outcome": "passed",
+      "duration_seconds": 0.0289,
+      "failure": null
+    },
+    {
+      "id": "PERM-002",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts",
+      "outcome": "passed",
+      "duration_seconds": 0.0177,
+      "failure": null
+    },
+    {
+      "id": "UI-001",
+      "category": "browser-workflow",
+      "node_id": "tests/test_browser.py::test_admin_signs_in_and_opens_an_issue_from_the_issue_list",
+      "outcome": "passed",
+      "duration_seconds": 0.8896,
+      "failure": null
+    },
+    {
+      "id": "REPO-001",
+      "category": "repository",
+      "node_id": "tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata",
+      "outcome": "passed",
+      "duration_seconds": 0.0182,
+      "failure": null
+    },
+    {
+      "id": "PERM-003",
+      "category": "authorization",
+      "node_id": "tests/test_repository_issues.py::test_guest_cannot_read_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.0358,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-001",
+      "category": "issue-lifecycle",
+      "node_id": "tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle",
+      "outcome": "passed",
+      "duration_seconds": 0.7002,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-002",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error",
+      "outcome": "passed",
+      "duration_seconds": 0.0137,
+      "failure": null
+    },
+    {
+      "id": "INPUT-001",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error",
+      "outcome": "passed",
+      "duration_seconds": 0.0191,
+      "failure": null
+    },
+    {
+      "id": "DATA-001",
+      "category": "persistence",
+      "node_id": "tests/test_z_persistence.py::test_repository_and_issue_survive_gitea_container_restart",
+      "outcome": "failed",
+      "duration_seconds": 2.8081,
+      "failure": "tests\\test_z_persistence.py:31: in test_repository_and_issue_survive_gitea_container_restart\n    wait_for_gitea(base_url=base_url, timeout_seconds=150)\nqa_lab\\service.py:16: in wait_for_gitea\n    with urlopen(f\"{base_url.rstrip('/')}/api/v1/version\", timeout=3) as response:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:215: in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:515: in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:532: in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:492: in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:1373: in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\request.py:1348: in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py:1430: in getresponse\n    response.begin()\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py:331: in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n<local-user>/AppData\\Local\\Programs\\Python\\Python312\\Lib\\http\\client.py:300: in _read_status\n    raise RemoteDisconnected(\"Remote end closed connection without\"\nE   http.client.RemoteDisconnected: Remote end closed connection without response"
+    }
+  ]
+}

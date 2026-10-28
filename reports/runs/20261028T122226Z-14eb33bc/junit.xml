@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="11" time="18.438" timestamp="2026-10-28T20:22:27.590126+08:00" hostname="DESKTOP-2KSSCF5"><testcase classname="tests.test_api_auth" name="test_public_version_endpoint_reports_pinned_gitea_release" time="0.210" /><testcase classname="tests.test_api_auth" name="test_authenticated_user_endpoint_returns_admin_identity" time="0.164" /><testcase classname="tests.test_api_auth" name="test_invalid_token_is_rejected" time="0.135" /><testcase classname="tests.test_api_auth" name="test_regular_user_cannot_access_admin_user_api" time="0.171" /><testcase classname="tests.test_api_auth" name="test_admin_can_list_users_and_test_accounts" time="0.169" /><testcase classname="tests.test_browser" name="test_admin_signs_in_and_opens_an_issue_from_the_issue_list" time="13.025"><failure message="AssertionError: Locator expected to be visible&#10;Actual value: None&#10;Error: element(s) not found &#10;Call log:&#10;  - Expect &quot;to_be_visible&quot; get_by_role(&quot;heading&quot;, name=&quot;Browser workflow issue from automated run&quot;, exact=True) with timeout 10000ms&#10;  - waiting for get_by_role(&quot;heading&quot;, name=&quot;Browser workflow issue from automated run&quot;, exact=True)&#10;&#10;Aria snapshot:&#10;- navigation &quot;Navigation Bar&quot;:&#10;  - link &quot;Dashboard&quot;:&#10;    - /url: /&#10;  - link &quot;Issues&quot;:&#10;    - /url: /issues&#10;  - link &quot;Pull Requests&quot;:&#10;    - /url: /pulls&#10;  - link &quot;Milestones&quot;:&#10;    - /url: /milestones&#10;  - link &quot;Explore&quot;:&#10;    - /url: /explore/repos&#10;  - link &quot;Notifications&quot;:&#10;    - /url: /notifications&#10;  - menu &quot;Create…&quot;&#10;  - menu &quot;Profile and Settings…&quot;:&#10;    - img &quot;qa_admin&quot;&#10;- main &quot;#1 - Browser workflow issue from automated run&quot;:&#10;  - link &quot;qa_admin&quot;:&#10;    - /url: /qa_admin&#10;  - text: /&#10;  - link &quot;qa-14eb33bc-01-test-admin-signs-in-and-open&quot;:&#10;    - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open&#10;  - text: Private&#10;  - link &quot;RSS Feed&quot;:&#10;    - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open.rss&#10;  - button &quot;Watching&quot;: &quot;1&quot;&#10;  - button &quot;Star&quot;: &quot;0&quot;&#10;  - button &quot;You cannot fork a repository you own.&quot;: Fork 0&#10;  - navigation:&#10;    - link &quot;Code&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/src/&#10;    - link &quot;Issues 1&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/issues&#10;    - link &quot;Pull Requests&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/pulls&#10;    - link &quot;Actions&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/actions&#10;    - link &quot;Packages&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/packages&#10;    - link &quot;Projects&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/projects&#10;    - link &quot;Releases&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/releases&#10;    - link &quot;Wiki&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/wiki&#10;    - link &quot;Activity&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/activity&#10;    - link &quot;Settings&quot;:&#10;      - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/settings&#10;  - 'heading &quot;Browser workflow issue from automated run #1&quot; [level=1]'&#10;  - button &quot;Edit&quot;&#10;  - button &quot;New Issue&quot;&#10;  - text: Open opened 2026-10-28 12:22:30 +00:00now by&#10;  - link &quot;qa_admin&quot;:&#10;    - /url: /qa_admin&#10;  - text: · 0 comments&#10;  - link &quot;qa_admin&quot;:&#10;    - /url: /qa_admin&#10;    - img &quot;qa_admin&quot;&#10;  - heading &quot;qa_admin commented Oct 28, 2026, 20:22 This user is the owner of this repository.&quot; [level=3]:&#10;    - link &quot;qa_admin&quot;:&#10;      - /url: /qa_admin&#10;    - text: commented&#10;    - link &quot;Oct 28, 2026, 20:22&quot;:&#10;      - /url: &quot;#issue-4&quot;&#10;      - text: 2026-10-28 12:22:30 +00:00now&#10;    - text: Owner&#10;    - menu &quot;Reactions&quot;&#10;    - menu&#10;  - article:&#10;    - paragraph: This issue is opened through the browser workflow test.&#10;  - link &quot;qa_admin&quot;:&#10;    - /url: /qa_admin&#10;    - img &quot;qa_admin&quot;&#10;  - text: Write Preview&#10;  - toolbar:&#10;    - button &quot;Add heading&quot;: &quot;1&quot;&#10;    - button &quot;Add heading&quot;: &quot;2&quot;&#10;    - button &quot;Add heading&quot;: &quot;3&quot;&#10;    - button &quot;Add bold text&quot;&#10;    - button &quot;Add italic text&quot;&#10;    - button &quot;Add strikethrough text&quot;&#10;    - button &quot;Quote text&quot;&#10;    - button &quot;Add code&quot;&#10;    - button &quot;Add a link&quot;&#10;    - button &quot;Add a bullet list&quot;&#10;    - button &quot;Add a numbered list&quot;&#10;    - button &quot;Add a list of tasks&quot;&#10;    - button &quot;Add a table&quot;&#10;    - button &quot;Mention a user or team&quot;&#10;    - button &quot;Reference an issue or pull request&quot;&#10;    - button&#10;    - button &quot;Use the legacy editor instead&quot;&#10;  - textbox &quot;Leave a comment&quot;&#10;  - button &quot;Drop files here to upload&quot;&#10;  - button &quot;Close Issue&quot;&#10;  - button &quot;Comment&quot; [disabled]&#10;  - combobox: No Branch/Tag Specified&#10;  - menu:&#10;    - strong: Labels&#10;  - text: No labels&#10;  - menu:&#10;    - strong: Milestone&#10;  - text: No Milestone&#10;  - menu:&#10;    - strong: Projects&#10;  - text: No projects&#10;  - combobox:&#10;    - strong: Assignees&#10;  - text: No Assignees&#10;  - strong: 1 Participants&#10;  - link &quot;qa_admin&quot;:&#10;    - /url: /qa_admin&#10;    - img &quot;qa_admin&quot;&#10;  - strong: Notifications&#10;  - button &quot;Unsubscribe&quot;&#10;  - strong: Time Tracker&#10;  - button &quot;Set estimated time&quot;&#10;  - button &quot;Start timer&quot;&#10;  - button &quot;Add Time&quot;&#10;  - strong: Due Date&#10;  - text: No due date set.&#10;  - textbox:&#10;    - /placeholder: yyyy-mm-dd&#10;  - button&#10;  - strong: Dependencies&#10;  - paragraph: No dependencies set.&#10;  - combobox&#10;  - text: Add dependency…&#10;  - button&#10;  - text: &quot;Reference: qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open#1&quot;&#10;  - button&#10;  - button &quot;Pin&quot;&#10;  - button &quot;Lock conversation&quot;&#10;  - button &quot;Delete&quot;&#10;- group &quot;Footer&quot;:&#10;  - contentinfo &quot;About Software&quot;:&#10;    - link &quot;Powered by Gitea&quot;:&#10;      - /url: https://about.gitea.com&#10;    - text: &quot;Version:&quot;&#10;    - link &quot;28.2.0&quot;:&#10;      - /url: /-/admin/config&#10;    - text: &quot;Page:&quot;&#10;    - strong: 67ms&#10;    - text: &quot;Template:&quot;&#10;    - strong: 14ms&#10;  - group &quot;Links&quot;:&#10;    - menu: Auto&#10;    - menu: English&#10;    - link &quot;Licenses&quot;:&#10;      - /url: /assets/licenses.txt&#10;    - link &quot;API&quot;:&#10;      - /url: /api/swagger">tests\test_browser.py:29: in test_admin_signs_in_and_opens_an_issue_from_the_issue_list
+    expect(page.get_by_role("heading", name=title, exact=True)).to_be_visible(timeout=10_000)
+E   AssertionError: Locator expected to be visible
+E   Actual value: None
+E   Error: element(s) not found 
+E   Call log:
+E     - Expect "to_be_visible" get_by_role("heading", name="Browser workflow issue from automated run", exact=True) with timeout 10000ms
+E     - waiting for get_by_role("heading", name="Browser workflow issue from automated run", exact=True)
+E   
+E   Aria snapshot:
+E   - navigation "Navigation Bar":
+E     - link "Dashboard":
+E       - /url: /
+E     - link "Issues":
+E       - /url: /issues
+E     - link "Pull Requests":
+E       - /url: /pulls
+E     - link "Milestones":
+E       - /url: /milestones
+E     - link "Explore":
+E       - /url: /explore/repos
+E     - link "Notifications":
+E       - /url: /notifications
+E     - menu "Create…"
+E     - menu "Profile and Settings…":
+E       - img "qa_admin"
+E   - main "#1 - Browser workflow issue from automated run":
+E     - link "qa_admin":
+E       - /url: /qa_admin
+E     - text: /
+E     - link "qa-14eb33bc-01-test-admin-signs-in-and-open":
+E       - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open
+E     - text: Private
+E     - link "RSS Feed":
+E       - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open.rss
+E     - button "Watching": "1"
+E     - button "Star": "0"
+E     - button "You cannot fork a repository you own.": Fork 0
+E     - navigation:
+E       - link "Code":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/src/
+E       - link "Issues 1":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/issues
+E       - link "Pull Requests":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/pulls
+E       - link "Actions":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/actions
+E       - link "Packages":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/packages
+E       - link "Projects":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/projects
+E       - link "Releases":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/releases
+E       - link "Wiki":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/wiki
+E       - link "Activity":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/activity
+E       - link "Settings":
+E         - /url: /qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open/settings
+E     - 'heading "Browser workflow issue from automated run #1" [level=1]'
+E     - button "Edit"
+E     - button "New Issue"
+E     - text: Open opened 2026-10-28 12:22:30 +00:00now by
+E     - link "qa_admin":
+E       - /url: /qa_admin
+E     - text: · 0 comments
+E     - link "qa_admin":
+E       - /url: /qa_admin
+E       - img "qa_admin"
+E     - heading "qa_admin commented Oct 28, 2026, 20:22 This user is the owner of this repository." [level=3]:
+E       - link "qa_admin":
+E         - /url: /qa_admin
+E       - text: commented
+E       - link "Oct 28, 2026, 20:22":
+E         - /url: "#issue-4"
+E         - text: 2026-10-28 12:22:30 +00:00now
+E       - text: Owner
+E       - menu "Reactions"
+E       - menu
+E     - article:
+E       - paragraph: This issue is opened through the browser workflow test.
+E     - link "qa_admin":
+E       - /url: /qa_admin
+E       - img "qa_admin"
+E     - text: Write Preview
+E     - toolbar:
+E       - button "Add heading": "1"
+E       - button "Add heading": "2"
+E       - button "Add heading": "3"
+E       - button "Add bold text"
+E       - button "Add italic text"
+E       - button "Add strikethrough text"
+E       - button "Quote text"
+E       - button "Add code"
+E       - button "Add a link"
+E       - button "Add a bullet list"
+E       - button "Add a numbered list"
+E       - button "Add a list of tasks"
+E       - button "Add a table"
+E       - button "Mention a user or team"
+E       - button "Reference an issue or pull request"
+E       - button
+E       - button "Use the legacy editor instead"
+E     - textbox "Leave a comment"
+E     - button "Drop files here to upload"
+E     - button "Close Issue"
+E     - button "Comment" [disabled]
+E     - combobox: No Branch/Tag Specified
+E     - menu:
+E       - strong: Labels
+E     - text: No labels
+E     - menu:
+E       - strong: Milestone
+E     - text: No Milestone
+E     - menu:
+E       - strong: Projects
+E     - text: No projects
+E     - combobox:
+E       - strong: Assignees
+E     - text: No Assignees
+E     - strong: 1 Participants
+E     - link "qa_admin":
+E       - /url: /qa_admin
+E       - img "qa_admin"
+E     - strong: Notifications
+E     - button "Unsubscribe"
+E     - strong: Time Tracker
+E     - button "Set estimated time"
+E     - button "Start timer"
+E     - button "Add Time"
+E     - strong: Due Date
+E     - text: No due date set.
+E     - textbox:
+E       - /placeholder: yyyy-mm-dd
+E     - button
+E     - strong: Dependencies
+E     - paragraph: No dependencies set.
+E     - combobox
+E     - text: Add dependency…
+E     - button
+E     - text: "Reference: qa_admin/qa-14eb33bc-01-test-admin-signs-in-and-open#1"
+E     - button
+E     - button "Pin"
+E     - button "Lock conversation"
+E     - button "Delete"
+E   - group "Footer":
+E     - contentinfo "About Software":
+E       - link "Powered by Gitea":
+E         - /url: https://about.gitea.com
+E       - text: "Version:"
+E       - link "28.2.0":
+E         - /url: /-/admin/config
+E       - text: "Page:"
+E       - strong: 67ms
+E       - text: "Template:"
+E       - strong: 14ms
+E     - group "Links":
+E       - menu: Auto
+E       - menu: English
+E       - link "Licenses":
+E         - /url: /assets/licenses.txt
+E       - link "API":
+E         - /url: /api/swagger</failure></testcase><testcase classname="tests.test_repository_issues" name="test_admin_creates_private_repository_and_reads_its_metadata" time="0.740" /><testcase classname="tests.test_repository_issues" name="test_guest_cannot_read_private_repository" time="0.764" /><testcase classname="tests.test_repository_issues" name="test_issue_comment_label_close_and_reopen_lifecycle" time="1.410" /><testcase classname="tests.test_repository_issues" name="test_issue_without_required_title_returns_validation_error" time="0.782" /><testcase classname="tests.test_repository_issues" name="test_malformed_json_is_rejected_as_a_client_error" time="0.678" /></testsuite></testsuites>

@@ -55,4 +55,13 @@ This probe is intentionally reported as a failing diagnostic. Do not include it 
 
 ## CI status and boundaries
 
-The workflow is configured in `.github/workflows/quality.yml`, but no remote Actions run is claimed. The project has not been pushed. All accepted results are from a local open-source Gitea instance; they do not represent production-system testing, production monitoring, or production load.
+The public repository is [jameswilson87156-del/gitea-quality-lab](https://github.com/jameswilson87156-del/gitea-quality-lab). GitHub Actions run [40701222279](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40701222279) completed successfully on `main` at commit `3460f5c4d7c97723aec3656814d6bee6d7086640`.
+
+- Workflow/job: `Quality` / `local-gitea-quality`
+- Runner: Ubuntu 24.04.5; Python 3.12.15
+- Unit tests: 19 passed, 0 failed, 0 skipped; exit code 0
+- Local Gitea API/browser/persistence suite: 16 passed, 0 failed, 0 skipped, 0 errors; exit code 0
+- Report upload: succeeded; artifact [`gitea-quality-reports`](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40701222279/artifacts/12821133970), retained by GitHub for 14 days
+- Integration report run ID: `20261028T135804Z-e4646c3c`
+
+The workflow uses an ephemeral local Gitea service in GitHub Actions. These results verify this repository's automated checks on the hosted runner; they do not represent a company's production system, production monitoring, production traffic, or production load. The recorded local acceptance and intentional failure diagnostic above remain separate from the GitHub Actions run.

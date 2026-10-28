@@ -32,4 +32,4 @@ The recorded results distinguish the local target and mode from test outcomes. T
 
 ## CI
 
-GitHub Actions installs Python 3.12 and the same pinned dependencies, installs Playwright Chromium headless shell, and calls `python scripts/run.py`. The runner creates its own ephemeral local Gitea service and uploads run artifacts even on failure. Remote CI is not claimed until the workflow has actually run in the repository.
+GitHub Actions runs on Ubuntu 24.04, installs Python 3.12 and the same pinned dependencies, installs Playwright Chromium headless shell, and calls `python scripts/run.py`. The runner creates its own ephemeral local Gitea service and uploads run artifacts even on failure. The public repository's recorded run passed 19 unit tests and 16 integration cases; see [acceptance evidence](../reports/evidence.md).

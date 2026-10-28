@@ -1,5 +1,7 @@
 # Gitea Quality Lab
 
+[![Quality](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/workflows/quality.yml)
+
 An independent black-box automation project for a locally hosted, pinned Gitea instance. It complements PromptOps Studio by demonstrating conventional system testing across REST APIs, authorization, browser workflows, and persisted data.
 
 This repository tests the upstream Gitea product; it is not a Gitea fork. The measured evidence is from a local Docker Compose instance of Gitea 28.2.0 with SQLite. It does not represent a company's production system, production traffic, or production capacity.
@@ -88,7 +90,7 @@ That reset removes the `gitea-quality-lab_gitea_data` volume and its local test 
 - Each test run gets a unique run ID and each generated repository uses that run ID, so reruns do not collide with prior data.
 - The suite performs no paid model calls, no remote API calls, and no production or internet-facing testing.
 - A test marked passed means the observed local Gitea behavior matched that case's assertion. It is not a claim that every Gitea feature is defect-free.
-- CI configuration is present, but remote GitHub Actions status is unverified because this project has not been pushed.
+- GitHub Actions ran the unit and local Gitea integration suites successfully on `main`; see the [recorded evidence](reports/evidence.md) and [workflow run](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40701222279).
 
 ## Resume-safe project description
 

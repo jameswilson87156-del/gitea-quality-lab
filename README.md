@@ -54,7 +54,7 @@ python scripts/up.py
 python scripts/run.py
 ```
 
-`python scripts/run.py` starts or reuses only this Compose project, waits for the public version endpoint, prepares the three local test users, and runs the real API/UI/persistence suite. It exits non-zero if a test fails or if pytest does not produce the required JSON report.
+`python scripts/run.py` starts or reuses only this Compose project, waits for the public version endpoint, prepares the three local test users, and runs the API/UI/persistence suite. It exits non-zero if a test fails, a JSON/JUnit report is missing, JSON totals do not match individual outcomes, JUnit totals disagree, the run ID is wrong, or a case ID is duplicated.
 
 ## Reports and artifacts
 
@@ -65,6 +65,8 @@ Each run writes to `reports/runs/<run_id>/`:
 - `report.html`: self-contained pytest HTML report.
 - `artifacts/*.png`: actual Chromium screenshots.
 - `artifacts/*-trace.zip`: failure trace only when tracing was enabled after successful login. Configured credentials and cookie/authorization values are redacted before publishing; raw trace archives are discarded. If sanitization fails, no trace is published.
+
+Before returning, the runner cross-checks JSON totals against case outcomes and JUnit test cases. The accepted local verification and its generated reports are recorded in [the evidence log](reports/evidence.md).
 
 The accepted local run is recorded in [reports/evidence.md](reports/evidence.md). Earlier iterative runs remain available in `reports/runs/`; their failures document issues found and fixed during development. Read `report.json` for the final run's actual counts; do not infer results from this README after code changes.
 

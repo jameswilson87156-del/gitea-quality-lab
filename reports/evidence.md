@@ -65,3 +65,13 @@ The public repository is [jameswilson87156-del/gitea-quality-lab](https://github
 - Integration report run ID: `20261028T135804Z-e4646c3c`
 
 The workflow uses an ephemeral local Gitea service in GitHub Actions. These results verify this repository's automated checks on the hosted runner; they do not represent a company's production system, production monitoring, production traffic, or production load. The recorded local acceptance and intentional failure diagnostic above remain separate from the GitHub Actions run.
+
+## Report-integrity validator update
+
+After adding JSON/JUnit cross-validation to `scripts/run.py`, the local checks were rerun on 2026-10-28:
+
+- `\.venv\Scripts\python.exe -m pytest tests\unit -q` — exit `0`; 24 passed, 0 failed, 0 skipped. This includes five report-integrity checks for matching totals, run-ID mismatch, duplicate case IDs, JSON-summary mismatch, and JUnit mismatch.
+- `\.venv\Scripts\python.exe scripts\run.py` — exit `0`; Gitea `28.2.0`; 16 passed, 0 failed, 0 skipped, 0 errors. The runner independently validated that JSON and JUnit both report 16 tests, 16 passed, and zero other outcomes.
+- Local run ID: `20261028T144605Z-9971cee7`.
+- JSON: [`report.json`](runs/20261028T144605Z-9971cee7/report.json); JUnit: [`junit.xml`](runs/20261028T144605Z-9971cee7/junit.xml); HTML: [`report.html`](runs/20261028T144605Z-9971cee7/report.html); Chromium evidence: [`UI screenshot`](runs/20261028T144605Z-9971cee7/artifacts/20261028T144605Z-9971cee7-UI-001.png).
+- These are local Windows/Docker results, separate from the earlier Ubuntu GitHub Actions result. The workflow must run again after the code update before this revision can claim a new hosted CI pass.

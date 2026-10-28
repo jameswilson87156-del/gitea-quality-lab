@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from qa_lab.bootstrap import ensure_test_users
 from qa_lab.compose import ROOT, compose_command
 from qa_lab.reporting import create_run_id
+from qa_lab.report_validation import ReportValidationError, validate_report_pair
 from qa_lab.service import BASE_URL, wait_for_gitea
 
 
@@ -35,6 +36,7 @@ def main() -> int:
     artifacts_dir = run_dir / "artifacts"
     artifacts_dir.mkdir(parents=True, exist_ok=True)
     json_report = run_dir / "report.json"
+    junit_report = run_dir / "junit.xml"
 
     env = os.environ.copy()
     env.update(
@@ -63,7 +65,7 @@ def main() -> int:
         *(str(path.relative_to(ROOT)) for path in integration_tests),
         "-ra",
         "--tb=short",
-        f"--junitxml={run_dir / 'junit.xml'}",
+        f"--junitxml={junit_report}",
         f"--html={run_dir / 'report.html'}",
         "--self-contained-html",
     ]
@@ -73,9 +75,23 @@ def main() -> int:
     if not json_report.exists():
         print("Pytest did not produce the required JSON report.", file=sys.stderr)
         return result.returncode or 2
+    if not junit_report.exists():
+        print("Pytest did not produce the required JUnit report.", file=sys.stderr)
+        return result.returncode or 2
+    try:
+        verified = validate_report_pair(json_report, junit_report, run_id)
+    except ReportValidationError as error:
+        print(f"Run report validation failed: {error}", file=sys.stderr)
+        return 2
     print(f"JSON report: {json_report}")
     print(f"HTML report: {run_dir / 'report.html'}")
-    print(f"JUnit report: {run_dir / 'junit.xml'}")
+    print(f"JUnit report: {junit_report}")
+    print(
+        "Validated JSON/JUnit totals: "
+        f"{verified['tests']} tests, {verified['passed']} passed, "
+        f"{verified['failed']} failed, {verified['skipped']} skipped, "
+        f"{verified['errors']} errors."
+    )
     return result.returncode
 
 

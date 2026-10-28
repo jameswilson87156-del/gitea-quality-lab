@@ -23,4 +23,4 @@ Accepted evidence run: `20261028T125224Z-80e1fd0e`; see [reports/evidence.md](..
 | UI-001 | Browser workflow | Admin logs in, creates a repository and Issue, submits a comment, and closes the Issue | PASS |
 | DATA-001 | Persistence | Repository and Issue remain readable after restarting the Gitea container | PASS |
 
-The final counts are 16 collected, 16 passed, 0 failed, 0 skipped, and 0 errors. This is one local run of these 16 cases, not a coverage percentage or a claim about all Gitea behavior.
+The recorded acceptance run collected 16 cases: 16 passed, 0 failed, 0 skipped, and 0 errors. This is one local run of these 16 cases, not a coverage percentage or a claim about all Gitea behavior. The runner now rejects duplicate case IDs and verifies that the JSON summary and JUnit XML agree with the individual outcomes.

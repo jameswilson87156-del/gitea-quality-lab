@@ -65,3 +65,15 @@ The public repository is [jameswilson87156-del/gitea-quality-lab](https://github
 - Integration report run ID: `20261028T135804Z-e4646c3c`
 
 The workflow uses an ephemeral local Gitea service in GitHub Actions. These results verify this repository's automated checks on the hosted runner; they do not represent a company's production system, production monitoring, production traffic, or production load. The recorded local acceptance and intentional failure diagnostic above remain separate from the GitHub Actions run.
+
+## Report-integrity validator update
+
+After adding JSON/JUnit cross-validation to `scripts/run.py`, the local checks were rerun on 2026-10-28:
+
+- `\.venv\Scripts\python.exe -m pytest tests\unit -q` — exit `0`; 24 passed, 0 failed, 0 skipped. This includes five report-integrity checks for matching totals, run-ID mismatch, duplicate case IDs, JSON-summary mismatch, and JUnit mismatch.
+- `\.venv\Scripts\python.exe scripts\run.py` — exit `0`; Gitea `28.2.0`; 16 passed, 0 failed, 0 skipped, 0 errors. The runner independently validated that JSON and JUnit both report 16 tests, 16 passed, and zero other outcomes.
+- Local run ID: `20261028T144605Z-9971cee7`.
+- JSON: [`report.json`](runs/20261028T144605Z-9971cee7/report.json); JUnit: [`junit.xml`](runs/20261028T144605Z-9971cee7/junit.xml); HTML: [`report.html`](runs/20261028T144605Z-9971cee7/report.html); Chromium evidence: [`UI screenshot`](runs/20261028T144605Z-9971cee7/artifacts/20261028T144605Z-9971cee7-UI-001.png).
+- Hosted verification: [GitHub Actions run 40710451708](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40710451708) on `feat/gitea-quality-lab`, commit `96baaa814f8c005451e54e9e967516814bde78f1`, completed successfully on Ubuntu 24.04.5 / Python 3.12.15. Unit tests: 24 passed; local Gitea API/browser/persistence: 16 passed, 0 failed/skipped/errors; the runner printed matching JSON/JUnit totals.
+- CI integration Run ID: `20261028T145441Z-5318397a`. GitHub uploaded artifact [`gitea-quality-reports`](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40710451708/artifacts/12825887164) (1,577,880 bytes, 14-day retention).
+- These hosted results verify this repository's tests against an ephemeral local Gitea container. They do not represent a company's production system, user traffic, or production capacity. The separate Windows/Docker local run and its files above remain preserved.

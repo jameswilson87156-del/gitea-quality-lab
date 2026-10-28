@@ -92,7 +92,7 @@ That reset removes the `gitea-quality-lab_gitea_data` volume and its local test 
 - Each test run gets a unique run ID and each generated repository uses that run ID, so reruns do not collide with prior data.
 - The suite performs no paid model calls, no remote API calls, and no production or internet-facing testing.
 - A test marked passed means the observed local Gitea behavior matched that case's assertion. It is not a claim that every Gitea feature is defect-free.
-- GitHub Actions ran the unit and local Gitea integration suites successfully on `main`; see the [recorded evidence](reports/evidence.md) and [workflow run](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40701222279).
+- GitHub Actions ran the unit and local Gitea integration suites successfully on the `feat/gitea-quality-lab` branch; see the [recorded evidence](reports/evidence.md) and [workflow run](https://github.com/jameswilson87156-del/gitea-quality-lab/actions/runs/40710451708).
 
 ## Resume-safe project description
 

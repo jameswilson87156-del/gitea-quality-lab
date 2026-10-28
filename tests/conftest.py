@@ -1,9 +1,12 @@
 import os
 import re
 from itertools import count
+from pathlib import Path
 
 import httpx
 import pytest
+
+from qa_lab.tracing import SafeTraceController
 
 
 pytest_plugins = ["qa_lab.pytest_plugin"]
@@ -71,3 +74,37 @@ def private_repo(admin_client, admin_auth, run_id, request):
     )
     assert response.status_code == 201, f"repository creation returned {response.status_code}: {response.text}"
     return response.json()
+
+
+@pytest.fixture
+def browser_page(request, run_id):
+    from playwright.sync_api import sync_playwright
+
+    root = Path(__file__).resolve().parents[1]
+    artifact_dir = Path(os.environ.get("GITEA_ARTIFACT_DIR", root / "reports" / "manual-artifacts"))
+    artifact_dir.mkdir(parents=True, exist_ok=True)
+    slug = re.sub(r"[^a-zA-Z0-9_-]+", "-", request.node.name).strip("-")
+    screenshot_path = artifact_dir / f"{run_id}-{slug}.png"
+    trace_path = artifact_dir / f"{run_id}-{slug}-trace.zip"
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        context = browser.new_context(viewport={"width": 1440, "height": 1000})
+        page = context.new_page()
+        try:
+            yield page
+        finally:
+            page.screenshot(path=str(screenshot_path), full_page=True)
+            context.close()
+            browser.close()
+
+
+@pytest.fixture
+def browser_trace(request, run_id, browser_page):
+    root = Path(__file__).resolve().parents[1]
+    artifact_dir = Path(os.environ.get("GITEA_ARTIFACT_DIR", root / "reports" / "manual-artifacts"))
+    slug = re.sub(r"[^a-zA-Z0-9_-]+", "-", request.node.name).strip("-")
+    controller = SafeTraceController(browser_page.context, artifact_dir / f"{run_id}-{slug}-trace.zip")
+    yield controller
+    call_report = getattr(request.node, "rep_call", None)
+    controller.finish(failed=bool(call_report and call_report.failed))

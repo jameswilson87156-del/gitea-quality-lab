@@ -20,7 +20,7 @@ def wait_for_gitea(base_url: str = BASE_URL, timeout_seconds: int = 120) -> str:
                     if isinstance(version, str) and version:
                         return version
                     last_problem = "version response did not contain a version"
-        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+        except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as error:
             last_problem = type(error).__name__
         time.sleep(1)
     raise RuntimeError(f"Gitea did not become ready within {timeout_seconds}s ({last_problem})")

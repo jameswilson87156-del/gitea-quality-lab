@@ -98,3 +98,59 @@ def test_regular_user_can_create_own_repository_and_issue(owner_client, owner_au
 
     assert created_issue.status_code == 201
     assert created_issue.json()["user"]["login"] == owner_auth[0]
+
+
+@pytest.mark.case(id="ISSUE-003", category="issue-query")
+def test_issue_list_filters_open_and_closed_state(admin_client, private_repo):
+    full_name = private_repo["full_name"]
+    created = admin_client.post(
+        f"/repos/{full_name}/issues",
+        json={"title": "Closed issue query regression", "body": "Filter by state."},
+    )
+    assert created.status_code == 201
+    issue_number = created.json()["number"]
+
+    closed = admin_client.patch(
+        f"/repos/{full_name}/issues/{issue_number}", json={"state": "closed"}
+    )
+    assert closed.status_code == 201
+
+    closed_issues = admin_client.get(
+        f"/repos/{full_name}/issues", params={"state": "closed", "limit": 50}
+    )
+    open_issues = admin_client.get(
+        f"/repos/{full_name}/issues", params={"state": "open", "limit": 50}
+    )
+
+    assert closed_issues.status_code == 200
+    assert open_issues.status_code == 200
+    assert issue_number in {issue["number"] for issue in closed_issues.json()}
+    assert issue_number not in {issue["number"] for issue in open_issues.json()}
+
+
+@pytest.mark.case(id="ISSUE-004", category="issue-query")
+def test_issue_list_paginates_without_duplicates_or_missing_items(admin_client, private_repo):
+    full_name = private_repo["full_name"]
+    created_numbers = set()
+    for index in range(3):
+        response = admin_client.post(
+            f"/repos/{full_name}/issues",
+            json={"title": f"Pagination regression {index}", "body": "Page through results."},
+        )
+        assert response.status_code == 201
+        created_numbers.add(response.json()["number"])
+
+    page_one = admin_client.get(
+        f"/repos/{full_name}/issues", params={"state": "all", "limit": 2, "page": 1}
+    )
+    page_two = admin_client.get(
+        f"/repos/{full_name}/issues", params={"state": "all", "limit": 2, "page": 2}
+    )
+
+    assert page_one.status_code == page_two.status_code == 200
+    first_numbers = [issue["number"] for issue in page_one.json()]
+    second_numbers = [issue["number"] for issue in page_two.json()]
+    assert len(first_numbers) == 2
+    assert len(second_numbers) == 1
+    assert set(first_numbers).isdisjoint(second_numbers)
+    assert set(first_numbers + second_numbers) == created_numbers

@@ -4,11 +4,13 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import json
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from qa_lab.bootstrap import ensure_test_users
 from qa_lab.compose import ROOT, compose_command
+from qa_lab.html_report import build_html_report
 from qa_lab.reporting import create_run_id
 from qa_lab.report_validation import ReportValidationError, validate_report_pair
 from qa_lab.service import BASE_URL, wait_for_gitea
@@ -37,6 +39,7 @@ def main() -> int:
     artifacts_dir.mkdir(parents=True, exist_ok=True)
     json_report = run_dir / "report.json"
     junit_report = run_dir / "junit.xml"
+    pytest_html_report = run_dir / "pytest-report.html"
 
     env = os.environ.copy()
     env.update(
@@ -66,7 +69,7 @@ def main() -> int:
         "-ra",
         "--tb=short",
         f"--junitxml={junit_report}",
-        f"--html={run_dir / 'report.html'}",
+        f"--html={pytest_html_report}",
         "--self-contained-html",
     ]
     print(f"Running {len(integration_tests)} integration modules against local Gitea {version}.")
@@ -83,8 +86,17 @@ def main() -> int:
     except ReportValidationError as error:
         print(f"Run report validation failed: {error}", file=sys.stderr)
         return 2
+    try:
+        measured_report = json.loads(json_report.read_text(encoding="utf-8"))
+        (run_dir / "report.html").write_text(
+            build_html_report(measured_report), encoding="utf-8"
+        )
+    except (OSError, json.JSONDecodeError, TypeError, ValueError) as error:
+        print(f"Could not render the validated HTML run report: {error}", file=sys.stderr)
+        return 2
     print(f"JSON report: {json_report}")
     print(f"HTML report: {run_dir / 'report.html'}")
+    print(f"Pytest HTML report: {pytest_html_report}")
     print(f"JUnit report: {junit_report}")
     print(
         "Validated JSON/JUnit totals: "

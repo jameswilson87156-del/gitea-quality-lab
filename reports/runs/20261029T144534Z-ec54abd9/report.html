@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Run 20261029T144534Z-ec54abd9 · Gitea Quality Lab</title>
+  <style>
+    :root { color-scheme: light; --ink:#172333; --muted:#68788b; --line:#dce3eb; --paper:#fff; --canvas:#f3f6f9; --blue:#2859c5; --teal:#147b67; --red:#b83849; --amber:#a96512; --mono:"Cascadia Code",Consolas,monospace; --sans:Inter,"Segoe UI","Microsoft YaHei",sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font:14px/1.55 var(--sans); }
+    a { color:var(--blue); }
+    .shell { max-width:1440px; margin:0 auto; padding:28px clamp(16px,4vw,52px) 48px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:52px; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:750; letter-spacing:-.02em; }
+    .brand-mark { display:grid; place-items:center; width:34px; height:34px; border-radius:9px; background:#173252; color:#fff; font-size:12px; letter-spacing:.08em; }
+    .brand small { display:block; color:var(--muted); font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .local-tag,.state-tag { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border:1px solid #cbd8e5; border-radius:999px; background:#fff; color:#41556d; font-size:11px; font-weight:700; }
+    .dot { width:7px; height:7px; border-radius:50%; background:#158a70; }
+    .hero { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding:34px 0 22px; }
+    .eyebrow { margin:0 0 7px; color:var(--blue); font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(26px,4vw,36px); line-height:1.15; letter-spacing:-.045em; }
+    .subtitle { margin:9px 0 0; color:var(--muted); }
+    .run-id { max-width:100%; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; font:11px/1.5 var(--mono); overflow-wrap:anywhere; }
+    .scope-note { margin:0 0 18px; padding:12px 15px; border-left:3px solid #5280d3; background:#eaf0fa; color:#364d70; font-size:12px; }
+    .metrics { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border:1px solid var(--line); border-radius:12px; background:var(--paper); overflow:hidden; }
+    .metric { min-height:105px; padding:17px 19px; border-right:1px solid var(--line); }
+    .metric:last-child { border-right:0; }
+    .metric span { display:block; color:var(--muted); font-size:11px; }
+    .metric strong { display:block; margin-top:8px; font-size:28px; line-height:1; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+    .metric .ok { color:var(--teal); } .metric .bad { color:var(--red); } .metric .warn { color:var(--amber); }
+    .section-grid { display:grid; grid-template-columns:minmax(250px,.78fr) minmax(0,1.55fr); gap:18px; margin-top:20px; align-items:start; }
+    .panel { min-width:0; border:1px solid var(--line); border-radius:12px; background:var(--paper); }
+    .panel-head { padding:18px 20px 13px; border-bottom:1px solid #e8edf2; }
+    h2 { margin:0; font-size:16px; letter-spacing:-.02em; }
+    .panel-head p { margin:4px 0 0; color:var(--muted); font-size:11px; }
+    .category-wrap { padding:8px 18px 17px; }
+    table { width:100%; border-collapse:collapse; font-size:12px; }
+    th,td { padding:10px 7px; border-bottom:1px solid #edf0f4; text-align:right; white-space:nowrap; }
+    th:first-child,td:first-child { text-align:left; }
+    thead th { color:var(--muted); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+    tbody tr:last-child th,tbody tr:last-child td { border-bottom:0; }
+    td.ok { color:var(--teal); font-weight:700; } td.bad { color:var(--red); font-weight:700; } td.warn { color:var(--amber); font-weight:700; }
+    .filters { display:flex; gap:9px; padding:14px 18px; border-bottom:1px solid #e8edf2; }
+    input,select { min-width:0; height:38px; padding:0 11px; border:1px solid #cfd8e3; border-radius:7px; background:#fff; color:var(--ink); font:inherit; outline:none; }
+    input { flex:1; } input:focus,select:focus { border-color:#6288d8; box-shadow:0 0 0 3px #dce7fc; }
+    .list-head,.case-row summary { display:grid; grid-template-columns:100px 145px minmax(130px,1fr) 66px 76px; align-items:center; gap:10px; }
+    .list-head { padding:9px 18px; color:var(--muted); background:#f8fafc; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+    .case-list { padding:0 10px 10px; }
+    .case-row { border-bottom:1px solid #edf0f4; }
+    .case-row:last-child { border-bottom:0; }
+    .case-row summary { min-height:48px; padding:7px 8px; cursor:pointer; list-style:none; font-size:11px; }
+    .case-row summary::-webkit-details-marker { display:none; }
+    .case-row summary::after { content:"+"; grid-column:5; grid-row:1; display:none; }
+    .case-row[open] summary { background:#f8fafc; }
+    .case-id { font:11px var(--mono); color:#294b84; font-weight:700; }
+    .case-category,.case-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#536579; }
+    .case-time { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+    .status { justify-self:end; padding:3px 8px; border-radius:999px; font-size:10px; font-weight:800; }
+    .status.passed { color:#116a56; background:#e5f4ef; } .status.failed { color:#a92e40; background:#fbe9ec; } .status.error { color:#8c570e; background:#fff1d7; } .status.skipped { color:#586779; background:#edf1f5; }
+    .case-detail { padding:13px 18px 16px; background:#f8fafc; border-top:1px solid #e8edf2; font-size:11px; }
+    .case-detail p { margin:0 0 8px; } .case-detail p span { margin-right:10px; color:var(--muted); }
+    code,pre { font-family:var(--mono); } .case-detail code { overflow-wrap:anywhere; }
+    .failure-output { max-height:300px; overflow:auto; margin:10px 0 0; padding:12px; border:1px solid #f0d4d9; border-radius:8px; background:#fff7f8; color:#7d2635; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .no-failure { color:var(--muted); }
+    .empty { padding:26px 18px; color:var(--muted); text-align:center; }
+    .run-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin-top:18px; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--line); }
+    .run-meta div { min-width:0; padding:12px 15px; background:#fff; } .run-meta span { display:block; color:var(--muted); font-size:10px; } .run-meta strong { display:block; margin-top:3px; font-size:11px; overflow-wrap:anywhere; }
+    footer { display:flex; justify-content:space-between; gap:12px; padding-top:22px; color:var(--muted); font-size:10px; }
+    @media(max-width:900px) { .metrics { grid-template-columns:repeat(3,1fr); } .metric:nth-child(3) { border-right:0; } .metric:nth-child(n+4) { border-top:1px solid var(--line); } .section-grid { grid-template-columns:1fr; } }
+    @media(max-width:760px) { .shell { padding:16px 12px 30px; } .topbar { align-items:flex-start; } .hero { display:block; padding-top:25px; } .run-id { margin-top:16px; } .metrics { grid-template-columns:repeat(2,1fr); } .metric { min-height:88px; padding:14px; border-top:1px solid var(--line); } .metric:nth-child(odd) { border-right:1px solid var(--line); } .metric:nth-child(even) { border-right:0; } .metric:first-child,.metric:nth-child(2) { border-top:0; } .metric strong { font-size:24px; } .filters { flex-direction:column; } .filters input,.filters select { width:100%; flex:auto; } .list-head { display:none; } .case-list { padding:8px; } .case-row summary { grid-template-columns:minmax(0,1fr) auto; gap:5px 10px; padding:10px; } .case-id { grid-column:1; } .status { grid-column:2; grid-row:1; } .case-name { grid-column:1; grid-row:2; } .case-category { grid-column:1; grid-row:3; } .case-time { grid-column:2; grid-row:2; } .case-detail { padding:12px; } .run-meta { grid-template-columns:1fr 1fr; } footer { flex-direction:column; } }
+    @media(prefers-reduced-motion:no-preference) { .case-row summary { transition:background .16s ease; } .case-row summary:hover { background:#f5f8fc; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">QA</span><span>Gitea Quality Lab<small>Run report</small></span></div>
+      <span class="local-tag"><span class="dot"></span>Local system test · no production target</span>
+    </header>
+    <section class="hero">
+      <div><p class="eyebrow">Execution evidence / completed</p><h1>Test run report</h1><p class="subtitle">A case-level view of the recorded API, browser and persistence checks.</p></div>
+      <div class="run-id" aria-label="Run ID">Run ID&nbsp; 20261029T144534Z-ec54abd9</div>
+    </section>
+    <p class="scope-note">This run measures the pinned local Gitea instance and synthetic test accounts. A passing case means its recorded assertion matched this local run; it is not a production reliability or capacity claim.</p>
+    <section class="metrics" aria-label="Run summary">
+      <div class="metric"><span>Measured cases</span><strong>18</strong></div>
+      <div class="metric"><span>Passed</span><strong class="ok">18</strong></div>
+      <div class="metric"><span>Failed</span><strong class="bad">0</strong></div>
+      <div class="metric"><span>Errors</span><strong class="warn">0</strong></div>
+      <div class="metric"><span>Skipped</span><strong>0</strong></div>
+    </section>
+    <section class="section-grid">
+      <article class="panel">
+        <header class="panel-head"><p class="eyebrow">Coverage by category</p><h2>Observed outcomes</h2><p>Counts are calculated from the individual case rows.</p></header>
+        <div class="category-wrap"><table><thead><tr><th scope="col">Category</th><th scope="col">Total</th><th scope="col">Pass</th><th scope="col">Fail</th><th scope="col">Error</th><th scope="col">Skip</th></tr></thead><tbody><tr><th scope="row">authentication</th><td>3</td><td class="ok">3</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">authorization</th><td>7</td><td class="ok">7</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">browser-workflow</th><td>1</td><td class="ok">1</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">input-validation</th><td>2</td><td class="ok">2</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">issue-lifecycle</th><td>1</td><td class="ok">1</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">issue-query</th><td>2</td><td class="ok">2</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">persistence</th><td>1</td><td class="ok">1</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr><tr><th scope="row">repository</th><td>1</td><td class="ok">1</td><td class="bad">0</td><td class="warn">0</td><td>0</td></tr></tbody></table></div>
+      </article>
+      <article class="panel">
+        <header class="panel-head"><p class="eyebrow">Case explorer</p><h2>Individual test results</h2><p id="visible-count" role="status" aria-live="polite">18 cases shown</p></header>
+        <div class="filters"><input id="case-search" type="search" aria-label="Search test cases" placeholder="Search case ID or pytest node"><select id="outcome-filter" aria-label="Filter by outcome"><option value="">All outcomes</option><option value="passed">Passed</option><option value="failed">Failed</option><option value="error">Error</option><option value="skipped">Skipped</option></select><select id="category-filter" aria-label="Filter by category"><option value="">All categories</option><option value="authentication">authentication</option><option value="authorization">authorization</option><option value="browser-workflow">browser-workflow</option><option value="input-validation">input-validation</option><option value="issue-lifecycle">issue-lifecycle</option><option value="issue-query">issue-query</option><option value="persistence">persistence</option><option value="repository">repository</option></select></div>
+        <div class="list-head"><span>Case ID</span><span>Category</span><span>Test</span><span>Duration</span><span>Outcome</span></div>
+        <div class="case-list"><details class="case-row" data-outcome="passed" data-category="authentication" data-search="auth-001 authentication tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release"><summary><span class="case-id">AUTH-001</span><span class="case-category">authentication</span><span class="case-name">tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release</span><span class="case-time">0.24s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authentication" data-search="auth-002 authentication tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity"><summary><span class="case-id">AUTH-002</span><span class="case-category">authentication</span><span class="case-name">tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity</span><span class="case-time">0.21s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authentication" data-search="auth-003 authentication tests/test_api_auth.py::test_invalid_token_is_rejected"><summary><span class="case-id">AUTH-003</span><span class="case-category">authentication</span><span class="case-name">tests/test_api_auth.py::test_invalid_token_is_rejected</span><span class="case-time">0.17s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_invalid_token_is_rejected</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-001 authorization tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api"><summary><span class="case-id">PERM-001</span><span class="case-category">authorization</span><span class="case-name">tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api</span><span class="case-time">0.18s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-002 authorization tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts"><summary><span class="case-id">PERM-002</span><span class="case-category">authorization</span><span class="case-name">tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts</span><span class="case-time">0.19s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-004 authorization tests/test_api_auth.py::test_anonymous_user_can_read_public_repository"><summary><span class="case-id">PERM-004</span><span class="case-category">authorization</span><span class="case-name">tests/test_api_auth.py::test_anonymous_user_can_read_public_repository</span><span class="case-time">0.69s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_anonymous_user_can_read_public_repository</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-005 authorization tests/test_api_auth.py::test_anonymous_user_cannot_read_private_repository"><summary><span class="case-id">PERM-005</span><span class="case-category">authorization</span><span class="case-name">tests/test_api_auth.py::test_anonymous_user_cannot_read_private_repository</span><span class="case-time">0.69s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_anonymous_user_cannot_read_private_repository</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-006 authorization tests/test_api_auth.py::test_guest_cannot_create_issue_in_another_users_private_repository"><summary><span class="case-id">PERM-006</span><span class="case-category">authorization</span><span class="case-name">tests/test_api_auth.py::test_guest_cannot_create_issue_in_another_users_private_repository</span><span class="case-time">0.67s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_api_auth.py::test_guest_cannot_create_issue_in_another_users_private_repository</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="browser-workflow" data-search="ui-001 browser-workflow tests/test_browser.py::test_admin_creates_repository_issue_comment_and_closes_it_in_browser"><summary><span class="case-id">UI-001</span><span class="case-category">browser-workflow</span><span class="case-name">tests/test_browser.py::test_admin_creates_repository_issue_comment_and_closes_it_in_browser</span><span class="case-time">5.15s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_browser.py::test_admin_creates_repository_issue_comment_and_closes_it_in_browser</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="repository" data-search="repo-001 repository tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata"><summary><span class="case-id">REPO-001</span><span class="case-category">repository</span><span class="case-name">tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata</span><span class="case-time">0.48s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="perm-003 authorization tests/test_repository_issues.py::test_guest_cannot_read_private_repository"><summary><span class="case-id">PERM-003</span><span class="case-category">authorization</span><span class="case-name">tests/test_repository_issues.py::test_guest_cannot_read_private_repository</span><span class="case-time">0.67s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_guest_cannot_read_private_repository</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="issue-lifecycle" data-search="issue-001 issue-lifecycle tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle"><summary><span class="case-id">ISSUE-001</span><span class="case-category">issue-lifecycle</span><span class="case-name">tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle</span><span class="case-time">1.25s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="input-validation" data-search="issue-002 input-validation tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error"><summary><span class="case-id">ISSUE-002</span><span class="case-category">input-validation</span><span class="case-name">tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error</span><span class="case-time">0.52s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="input-validation" data-search="input-001 input-validation tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error"><summary><span class="case-id">INPUT-001</span><span class="case-category">input-validation</span><span class="case-name">tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error</span><span class="case-time">0.49s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="authorization" data-search="repo-002 authorization tests/test_repository_issues.py::test_regular_user_can_create_own_repository_and_issue"><summary><span class="case-id">REPO-002</span><span class="case-category">authorization</span><span class="case-name">tests/test_repository_issues.py::test_regular_user_can_create_own_repository_and_issue</span><span class="case-time">0.53s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_regular_user_can_create_own_repository_and_issue</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="issue-query" data-search="issue-003 issue-query tests/test_repository_issues.py::test_issue_list_filters_open_and_closed_state"><summary><span class="case-id">ISSUE-003</span><span class="case-category">issue-query</span><span class="case-name">tests/test_repository_issues.py::test_issue_list_filters_open_and_closed_state</span><span class="case-time">0.65s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_issue_list_filters_open_and_closed_state</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="issue-query" data-search="issue-004 issue-query tests/test_repository_issues.py::test_issue_list_paginates_without_duplicates_or_missing_items"><summary><span class="case-id">ISSUE-004</span><span class="case-category">issue-query</span><span class="case-name">tests/test_repository_issues.py::test_issue_list_paginates_without_duplicates_or_missing_items</span><span class="case-time">0.73s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_repository_issues.py::test_issue_list_paginates_without_duplicates_or_missing_items</code></p><p class="no-failure">No failure detail was captured.</p></div></details><details class="case-row" data-outcome="passed" data-category="persistence" data-search="data-001 persistence tests/test_z_persistence.py::test_repository_and_issue_survive_gitea_container_restart"><summary><span class="case-id">DATA-001</span><span class="case-category">persistence</span><span class="case-name">tests/test_z_persistence.py::test_repository_and_issue_survive_gitea_container_restart</span><span class="case-time">2.68s</span><span class="status passed">Passed</span></summary><div class="case-detail"><p><span>Pytest node</span><code>tests/test_z_persistence.py::test_repository_and_issue_survive_gitea_container_restart</code></p><p class="no-failure">No failure detail was captured.</p></div></details></div>
+      </article>
+    </section>
+    <section class="run-meta" aria-label="Run target metadata">
+      <div><span>Target</span><strong>Gitea 28.2.0</strong></div>
+      <div><span>Mode</span><strong>local-docker-compose</strong></div>
+      <div><span>Base URL</span><strong>http://127.0.0.1:13000</strong></div>
+      <div><span>Started</span><strong>2026-10-29T14:45:35Z</strong></div>
+      <div><span>Finished</span><strong>2026-10-29T14:45:51Z</strong></div>
+      <div><span>Execution state</span><strong>completed</strong></div>
+    </section>
+    <footer><span>Gitea Quality Lab · generated from the run-scoped JSON snapshot</span><span>Local Compose + SQLite evidence</span></footer>
+  </main>
+  <script>
+    const rows = [...document.querySelectorAll('.case-row')];
+    const search = document.getElementById('case-search');
+    const outcome = document.getElementById('outcome-filter');
+    const category = document.getElementById('category-filter');
+    const counter = document.getElementById('visible-count');
+    function filterRows() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const row of rows) {
+        const matches = (!query || row.dataset.search.includes(query))
+          && (!outcome.value || row.dataset.outcome === outcome.value)
+          && (!category.value || row.dataset.category === category.value);
+        row.hidden = !matches;
+        if (matches) visible += 1;
+      }
+      counter.textContent = `${visible} of ${rows.length} cases shown`;
+    }
+    search.addEventListener('input', filterRows);
+    outcome.addEventListener('change', filterRows);
+    category.addEventListener('change', filterRows);
+  </script>
+</body>
+</html>

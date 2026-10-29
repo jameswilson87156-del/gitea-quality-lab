@@ -62,11 +62,12 @@ Each run writes to `reports/runs/<run_id>/`:
 
 - `report.json`: run ID, Gitea version, local mode, measured case outcomes, durations, failure details, and totals.
 - `junit.xml`: CI-compatible per-test report.
-- `report.html`: self-contained pytest HTML report.
+- `report.html`: project-owned responsive run report rendered from the validated JSON snapshot.
+- `pytest-report.html`: upstream pytest-html diagnostic report.
 - `artifacts/*.png`: actual Chromium screenshots.
 - `artifacts/*-trace.zip`: failure trace only when tracing was enabled after successful login. Configured credentials and cookie/authorization values are redacted before publishing; raw trace archives are discarded. If sanitization fails, no trace is published.
 
-Before returning, the runner cross-checks JSON totals against case outcomes and JUnit test cases. The accepted local verification and its generated reports are recorded in [the evidence log](reports/evidence.md).
+Before returning, the runner cross-checks JSON totals against case outcomes and JUnit test cases, then renders the interactive HTML report from that validated snapshot. The accepted local verification and its generated reports are recorded in [the evidence log](reports/evidence.md).
 
 The accepted local run is recorded in [reports/evidence.md](reports/evidence.md). Earlier iterative runs remain available in `reports/runs/`; their failures document issues found and fixed during development. Read `report.json` for the final run's actual counts; do not infer results from this README after code changes.
 
@@ -96,7 +97,7 @@ That reset removes the `gitea-quality-lab_gitea_data` volume and its local test 
 
 ## Resume-safe project description
 
-> Built a Python/pytest quality automation project for Gitea 28.2.0 using Docker Compose, HTTPX, and Playwright; covered API authentication and authorization, repository and Issue workflows, a browser-based create/comment/close flow, and SQLite persistence after container restart. Generated run-scoped JSON/JUnit/HTML reports and screenshots; the recorded local run passed 16 of 16 cases. This was a local open-source product test, not production-system experience.
+> Built a Python/pytest quality automation project for Gitea 28.2.0 using Docker Compose, HTTPX, and Playwright; covered API authentication and authorization, repository and Issue workflows, a browser-based create/comment/close flow, pagination and state filters, and SQLite persistence after container restart. Generated run-scoped JSON/JUnit and responsive HTML reports with screenshots; the latest recorded local run passed 18 of 18 cases. This was a local open-source product test, not production-system experience.
 
 See [resume positioning and limits](docs/resume-positioning.md) for wording that keeps the evidence boundary clear.
 

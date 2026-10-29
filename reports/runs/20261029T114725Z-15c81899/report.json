@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "run_id": "20261029T114725Z-15c81899",
+  "execution_state": "completed",
+  "started_at": "2026-10-29T11:47:26Z",
+  "finished_at": "2026-10-29T11:47:41Z",
+  "target": {
+    "name": "Gitea",
+    "version": "28.2.0",
+    "base_url": "http://127.0.0.1:13000",
+    "mode": "local-docker-compose"
+  },
+  "summary": {
+    "tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0
+  },
+  "cases": [
+    {
+      "id": "AUTH-001",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_public_version_endpoint_reports_pinned_gitea_release",
+      "outcome": "passed",
+      "duration_seconds": 0.223,
+      "failure": null
+    },
+    {
+      "id": "AUTH-002",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_authenticated_user_endpoint_returns_admin_identity",
+      "outcome": "passed",
+      "duration_seconds": 0.1701,
+      "failure": null
+    },
+    {
+      "id": "AUTH-003",
+      "category": "authentication",
+      "node_id": "tests/test_api_auth.py::test_invalid_token_is_rejected",
+      "outcome": "passed",
+      "duration_seconds": 0.1516,
+      "failure": null
+    },
+    {
+      "id": "PERM-001",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_regular_user_cannot_access_admin_user_api",
+      "outcome": "passed",
+      "duration_seconds": 0.1535,
+      "failure": null
+    },
+    {
+      "id": "PERM-002",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_admin_can_list_users_and_test_accounts",
+      "outcome": "passed",
+      "duration_seconds": 0.1832,
+      "failure": null
+    },
+    {
+      "id": "PERM-004",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_anonymous_user_can_read_public_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.835,
+      "failure": null
+    },
+    {
+      "id": "PERM-005",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_anonymous_user_cannot_read_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.716,
+      "failure": null
+    },
+    {
+      "id": "PERM-006",
+      "category": "authorization",
+      "node_id": "tests/test_api_auth.py::test_guest_cannot_create_issue_in_another_users_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.777,
+      "failure": null
+    },
+    {
+      "id": "UI-001",
+      "category": "browser-workflow",
+      "node_id": "tests/test_browser.py::test_admin_creates_repository_issue_comment_and_closes_it_in_browser",
+      "outcome": "passed",
+      "duration_seconds": 4.7243,
+      "failure": null
+    },
+    {
+      "id": "REPO-001",
+      "category": "repository",
+      "node_id": "tests/test_repository_issues.py::test_admin_creates_private_repository_and_reads_its_metadata",
+      "outcome": "passed",
+      "duration_seconds": 0.4605,
+      "failure": null
+    },
+    {
+      "id": "PERM-003",
+      "category": "authorization",
+      "node_id": "tests/test_repository_issues.py::test_guest_cannot_read_private_repository",
+      "outcome": "passed",
+      "duration_seconds": 0.5885,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-001",
+      "category": "issue-lifecycle",
+      "node_id": "tests/test_repository_issues.py::test_issue_comment_label_close_and_reopen_lifecycle",
+      "outcome": "passed",
+      "duration_seconds": 0.8207,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-002",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_issue_without_required_title_returns_validation_error",
+      "outcome": "passed",
+      "duration_seconds": 0.4148,
+      "failure": null
+    },
+    {
+      "id": "INPUT-001",
+      "category": "input-validation",
+      "node_id": "tests/test_repository_issues.py::test_malformed_json_is_rejected_as_a_client_error",
+      "outcome": "passed",
+      "duration_seconds": 0.437,
+      "failure": null
+    },
+    {
+      "id": "REPO-002",
+      "category": "authorization",
+      "node_id": "tests/test_repository_issues.py::test_regular_user_can_create_own_repository_and_issue",
+      "outcome": "passed",
+      "duration_seconds": 0.4402,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-003",
+      "category": "issue-query",
+      "node_id": "tests/test_repository_issues.py::test_issue_list_filters_open_and_closed_state",
+      "outcome": "passed",
+      "duration_seconds": 0.5825,
+      "failure": null
+    },
+    {
+      "id": "ISSUE-004",
+      "category": "issue-query",
+      "node_id": "tests/test_repository_issues.py::test_issue_list_paginates_without_duplicates_or_missing_items",
+      "outcome": "passed",
+      "duration_seconds": 0.5638,
+      "failure": null
+    },
+    {
+      "id": "DATA-001",
+      "category": "persistence",
+      "node_id": "tests/test_z_persistence.py::test_repository_and_issue_survive_gitea_container_restart",
+      "outcome": "passed",
+      "duration_seconds": 2.5386,
+      "failure": null
+    }
+  ]
+}
